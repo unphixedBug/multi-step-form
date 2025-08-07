@@ -1,5 +1,7 @@
 import type { UseFormReturn } from "react-hook-form";
 import type { FormData } from "../../lib/schemas";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
 
 export const PersonalInfoStep = ({
   form,
@@ -16,8 +18,8 @@ export const PersonalInfoStep = ({
       <h2>Personal info</h2>
       <p>Please provide your name, email address, and phone number.</p>
       <div>
-        <label htmlFor="name">Name</label>
-        <input
+        <Label htmlFor="name">Name</Label>
+        <Input
           type="text"
           {...register("name")}
           placeholder="e.g. Stephen King"
@@ -29,8 +31,8 @@ export const PersonalInfoStep = ({
         )}
       </div>
       <div>
-        <label htmlFor="email">Email Address</label>
-        <input
+        <Label htmlFor="email">Email Address</Label>
+        <Input
           type="email"
           {...register("email")}
           placeholder="e.g. stephenking@lorem.com"
@@ -38,8 +40,8 @@ export const PersonalInfoStep = ({
         {errors.email && <span>{errors.email.message}</span>}
       </div>
       <div>
-        <label htmlFor="phone">Phone Number</label>
-        <input
+        <Label htmlFor="phone">Phone Number</Label>
+        <Input
           type="tel"
           {...register("phone")}
           placeholder="e.g. +1 234 567 890"
