@@ -9,7 +9,7 @@ export const formSchema = z.object({
     .regex(/^[0-9+\-\s()]+$/, "Only numbers"),
 
   plan: z.enum(["arcade", "advanced", "pro"]),
-  billing: z.enum(["monthly", "yearly"]),
+  isYearlyPlanSelected: z.boolean(),
 
   addons: z.object({
     onlineService: z.boolean(),

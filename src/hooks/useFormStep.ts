@@ -8,7 +8,7 @@ export const useFormStep = () => {
     mode: "onChange",
     defaultValues: {
       plan: "arcade",
-      billing: "monthly",
+      isYearlyPlanSelected: false,
       addons: {
         onlineService: false,
         largerStorage: false,

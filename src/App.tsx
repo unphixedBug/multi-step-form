@@ -27,8 +27,8 @@ function App() {
   };
 
   return (
-    <div className="bg-blue-50 h-screen w-screen flex flex-col items-center justify-center">
-      <div className="bg-white h-9/12 w-9/12 rounded-2xl p-10 flex items-center justify-between">
+    <div className="bg-blue-50 h-screen w-screen flex flex-col items-center justify-center text-base text-blue-950">
+      <div className="bg-white h-9/12 w-9/12 rounded-2xl p-3 flex items-center justify-between">
         <div className="flex flex-col gap-7 rounded-lg p-10 text-white bg-[url('/images/bg-sidebar-mobile.svg')] md:bg-[url('/images/bg-sidebar-desktop.svg')] bg-cover bg-center bg-no-repeat w-1/3 h-full">
           <StepIndicator
             step={1}
@@ -59,9 +59,13 @@ function App() {
               {currentStep === 3 && <AddOnsStep form={form} />}
               {currentStep === 4 && <SummaryStep form={form} />}
             </div>
-            <div>
+            <div className="flex justify-end">
               {currentStep > 1 && <Button onClick={prevStep}>Précédent</Button>}
-              <Button onClick={nextStep} disabled={currentStep === totalSteps}>
+              <Button
+                onClick={nextStep}
+                disabled={currentStep === totalSteps}
+                className="ml-auto"
+              >
                 {currentStep === totalSteps ? "Valider" : "Suivant"}
               </Button>
             </div>
