@@ -3,6 +3,7 @@ import { Title } from "../elements/Title";
 import type { UseFormReturn } from "react-hook-form";
 import type { FormData } from "../../lib/schemas";
 import { AddonCard } from "../elements/AddonCard";
+import { ADDONS_DATA } from "../../lib/constants";
 
 export const AddOnsStep = ({ form }: { form: UseFormReturn<FormData> }) => {
   const { watch, setValue } = form;
@@ -10,7 +11,7 @@ export const AddOnsStep = ({ form }: { form: UseFormReturn<FormData> }) => {
   const isYearlyPlanSelected = watch("isYearlyPlanSelected");
 
   const handleAddonChange = (
-    addonKey: keyof typeof addons,
+    addonKey: keyof FormData["addons"],
     checked: boolean
   ) => {
     setValue(`addons.${addonKey}`, checked);
@@ -21,39 +22,24 @@ export const AddOnsStep = ({ form }: { form: UseFormReturn<FormData> }) => {
       <Title title="Pick add-ons" />
       <StepDescription content="Add-ons help enhance your gaming experience." />
       <div className="flex flex-col gap-3">
-        <AddonCard
-          id="onlineService"
-          title="Online service"
-          description="Access to multiplayer games"
-          prices={{ monthly: 1, yearly: 10 }}
-          isYearlyPlanSelected={isYearlyPlanSelected}
-          checked={addons.onlineService}
-          onCheckedChange={(checked) =>
-            handleAddonChange("onlineService", checked)
-          }
-        />
-        <AddonCard
-          id="largerStorage"
-          title="Larger storage"
-          description="Extra 1TB of cloud save"
-          prices={{ monthly: 2, yearly: 20 }}
-          isYearlyPlanSelected={isYearlyPlanSelected}
-          checked={addons.largerStorage}
-          onCheckedChange={(checked) =>
-            handleAddonChange("largerStorage", checked)
-          }
-        />
-        <AddonCard
-          id="customizableProfile"
-          title="Customizable profile"
-          description="Custom theme on your profile"
-          prices={{ monthly: 2, yearly: 20 }}
-          isYearlyPlanSelected={isYearlyPlanSelected}
-          checked={addons.customizableProfile}
-          onCheckedChange={(checked) =>
-            handleAddonChange("customizableProfile", checked)
-          }
-        />
+        {Object.values(ADDONS_DATA).map((addon) => {
+          return (
+            <AddonCard
+              id={addon.id}
+              title={addon.name}
+              description={addon.description}
+              prices={{
+                monthly: addon.monthlyPrice,
+                yearly: addon.yearlyPrice,
+              }}
+              isYearlyPlanSelected={isYearlyPlanSelected}
+              checked={addons[addon.id as keyof FormData["addons"]]}
+              onCheckedChange={(checked) =>
+                handleAddonChange(addon.id as keyof FormData["addons"], checked)
+              }
+            />
+          );
+        })}
       </div>
     </div>
   );

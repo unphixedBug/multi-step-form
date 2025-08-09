@@ -3,6 +3,7 @@ import type { FormData } from "../../lib/schemas";
 import { Title } from "../elements/Title";
 import { Switch } from "../ui/switch";
 import { StepDescription } from "../elements/StepDescription";
+import { PLANS_DATA } from "../../lib/constants";
 
 export const PlanSelectionStep = ({
   form,
@@ -10,30 +11,6 @@ export const PlanSelectionStep = ({
   form: UseFormReturn<FormData>;
 }) => {
   const { register, watch, setValue } = form;
-
-  const plansData = [
-    {
-      id: "arcade",
-      name: "Arcade",
-      icon: "/images/icon-arcade.svg",
-      monthlyPrice: 9,
-      yearlyPrice: 90,
-    },
-    {
-      id: "advanced",
-      name: "Advanced",
-      icon: "/images/icon-advanced.svg",
-      monthlyPrice: 12,
-      yearlyPrice: 120,
-    },
-    {
-      id: "pro",
-      name: "Pro",
-      icon: "/images/icon-pro.svg",
-      monthlyPrice: 15,
-      yearlyPrice: 150,
-    },
-  ];
 
   const selectedPlan = watch("plan");
   const isYearlyPlanSelected = watch("isYearlyPlanSelected");
@@ -43,7 +20,7 @@ export const PlanSelectionStep = ({
       <Title title="Select your plan" />
       <StepDescription content="You have the option of monthly or yearly billing." />
       <div className="flex justify-between w-full gap-4">
-        {plansData.map((plan) => (
+        {Object.values(PLANS_DATA).map((plan) => (
           <label
             key={plan.id}
             className={`${

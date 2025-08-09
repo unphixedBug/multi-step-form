@@ -23,3 +23,5 @@ watch() c'est incr
 à faire: rentre la barre latérale cliquable
 
 ## Bonus implémentés par moi-même
+
+rechargement garde en mémoire: l'étape actuelle + les données sélectionnées
