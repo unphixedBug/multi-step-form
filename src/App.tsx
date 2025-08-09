@@ -43,8 +43,8 @@ function App() {
 
   return (
     <div className="bg-blue-50 h-screen w-screen flex flex-col items-center justify-center text-base text-blue-950">
-      <div className="bg-white h-9/12 w-9/12 rounded-2xl p-3 flex items-center justify-between">
-        <div className="flex flex-col gap-7 rounded-lg p-10 text-white bg-[url('/images/bg-sidebar-mobile.svg')] md:bg-[url('/images/bg-sidebar-desktop.svg')] bg-cover bg-center bg-no-repeat w-1/3 h-full">
+      <div className="md:bg-white md:h-9/12 md:w-9/12 h-full w-full rounded-2xl p-3 flex flex-col md:flex-row items-center justify-between">
+        <div className="flex md:flex-col gap-7 items-start rounded-lg p-10 text-white bg-[url('/images/bg-sidebar-mobile.svg')] md:bg-[url('/images/bg-sidebar-desktop.svg')] bg-cover bg-center bg-no-repeat md:w-1/3 h-1/3 md:h-full">
           <StepIndicator
             step={1}
             isCurrentStep={currentStep === 1}

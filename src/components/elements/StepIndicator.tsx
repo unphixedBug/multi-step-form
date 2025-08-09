@@ -16,7 +16,7 @@ export const StepIndicator = ({
       >
         {step}
       </p>
-      <div>
+      <div className="hidden md:block">
         <p className="text-purple-200">Step {step}</p>
         <p className="font-bold">{stepName.toUpperCase()}</p>
       </div>
