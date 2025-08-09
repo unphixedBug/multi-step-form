@@ -7,6 +7,7 @@ import { SummaryStep } from "./components/forms/SummaryStep";
 import { Button } from "./components/ui/button";
 import { StepIndicator } from "./components/elements/StepIndicator";
 import { FormLayout } from "./components/layouts/FormLayout";
+import { ThankYouStep } from "./components/forms/ThankYouStep";
 
 function App() {
   const [currentStep, setCurrentStep] = useState(() => {
@@ -14,6 +15,13 @@ function App() {
     return saved ? parseInt(saved) : 1;
   });
   const totalSteps = 4;
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleConfirm = () => {
+    if (form.formState.isValid) {
+      setIsSubmitted(true);
+    }
+  };
 
   const form = useFormStep();
 
@@ -58,26 +66,36 @@ function App() {
             stepName="Summary"
           />
         </div>
-        {
+        {!isSubmitted && (
           <FormLayout>
             <div>
               {currentStep === 1 && <PersonalInfoStep form={form} />}
               {currentStep === 2 && <PlanSelectionStep form={form} />}
               {currentStep === 3 && <AddOnsStep form={form} />}
-              {currentStep === 4 && <SummaryStep form={form} />}
+              {currentStep === 4 && !isSubmitted && <SummaryStep form={form} />}
             </div>
-            <div className="flex justify-end">
-              {currentStep > 1 && <Button onClick={prevStep}>Go back</Button>}
-              <Button
-                onClick={nextStep}
-                disabled={currentStep === totalSteps}
-                className="ml-auto"
-              >
-                {currentStep === totalSteps ? "Confirm" : "Next Step"}
-              </Button>
-            </div>
+            {!isSubmitted && (
+              <div className="flex justify-end">
+                {currentStep > 1 && <Button onClick={prevStep}>Go back</Button>}
+                {currentStep < totalSteps && (
+                  <Button onClick={nextStep} className="ml-auto">
+                    Next Step
+                  </Button>
+                )}
+                {currentStep === totalSteps && !isSubmitted && (
+                  <Button
+                    onClick={handleConfirm}
+                    disabled={!form.formState.isValid}
+                    className="ml-auto"
+                  >
+                    Confirm
+                  </Button>
+                )}
+              </div>
+            )}
           </FormLayout>
-        }
+        )}
+        {isSubmitted && <ThankYouStep />}
       </div>
     </div>
   );
