@@ -59,7 +59,7 @@ export const PlanSelectionStep = ({
               className="sr-only"
             />
             <div className="flex flex-col gap-4">
-              <img className="w-10 h-10" src={plan.icon} alt={plan.name} />
+              <img className="w-10 h-10 mb-6" src={plan.icon} alt={plan.name} />
               <div>
                 <h3 className="font-bold">{plan.name}</h3>
                 <p className="text-gray-500">
@@ -78,20 +78,32 @@ export const PlanSelectionStep = ({
           </label>
         ))}
       </div>
-      <label className="flex gap-2 cursor-pointer bg-blue-50 rounded-lg p-2">
+      <label className="flex gap-2 cursor-pointer bg-blue-50 rounded-lg p-2 mt-6">
         <input
           {...register("isYearlyPlanSelected")}
           type="checkbox"
           className="sr-only"
         />
-        <span>Monthly</span>
+        <span
+          className={`font-bold ${
+            isYearlyPlanSelected ? "text-gray-500" : "text-blue-950"
+          }`}
+        >
+          Monthly
+        </span>
         <Switch
           checked={isYearlyPlanSelected}
           onCheckedChange={(checked) =>
             setValue("isYearlyPlanSelected", checked)
           }
         />
-        <span>Yearly</span>
+        <span
+          className={`font-bold ${
+            isYearlyPlanSelected ? "text-blue-950" : "text-gray-500"
+          }`}
+        >
+          Yearly
+        </span>
       </label>
     </div>
   );

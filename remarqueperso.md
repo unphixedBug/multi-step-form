@@ -7,3 +7,19 @@ todo later: simuler l'envoi à un db
 ce dont je suis fier: rendre le form fonctionnel au maximum et pas juste faire le design
 
 réétudier la partie du toggle dans la section plan pcq pas trop trop compris
+
+à creuser: personnalisation de shadcn (j'ai sûrement pas suivi de bonne pratique)
+
+todo: intégrer react-hook-form et zod dans deux projets différents pour 1) pratiquer davantage 2) comprendre un peu plus qui fait quoi
+
+à refaire pour mieux comprendre: deux boutons dont un qui disparait conditionnellement sans changer le layout
+
+à tester: tailwind et radix sans shadcn
+
+watch() c'est incr
+
+à faire: faire que le rechargement de la page ramène à la même étape
+
+à faire: rentre la barre latérale cliquable
+
+## Bonus implémentés par moi-même

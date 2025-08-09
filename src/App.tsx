@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFormStep } from "./hooks/useFormStep";
 import { PersonalInfoStep } from "./components/forms/PersonalInfoStep";
 import { PlanSelectionStep } from "./components/forms/PlanSelectionStep";
@@ -9,10 +9,17 @@ import { StepIndicator } from "./components/elements/StepIndicator";
 import { FormLayout } from "./components/layouts/FormLayout";
 
 function App() {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(() => {
+    const saved = localStorage.getItem("currentStep");
+    return saved ? parseInt(saved) : 1;
+  });
   const totalSteps = 4;
 
   const form = useFormStep();
+
+  useEffect(() => {
+    localStorage.setItem("currentStep", currentStep.toString());
+  }, [currentStep]);
 
   const nextStep = () => {
     if (currentStep < totalSteps) {
@@ -60,13 +67,13 @@ function App() {
               {currentStep === 4 && <SummaryStep form={form} />}
             </div>
             <div className="flex justify-end">
-              {currentStep > 1 && <Button onClick={prevStep}>Précédent</Button>}
+              {currentStep > 1 && <Button onClick={prevStep}>Go back</Button>}
               <Button
                 onClick={nextStep}
                 disabled={currentStep === totalSteps}
                 className="ml-auto"
               >
-                {currentStep === totalSteps ? "Valider" : "Suivant"}
+                {currentStep === totalSteps ? "Confirm" : "Next Step"}
               </Button>
             </div>
           </FormLayout>
