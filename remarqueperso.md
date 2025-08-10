@@ -18,8 +18,6 @@ todo: intégrer react-hook-form et zod dans deux projets différents pour 1) pra
 
 watch() c'est incr
 
-à faire: faire que le rechargement de la page ramène à la même étape
-
 à faire: rentre la barre latérale cliquable
 
 ## Bonus implémentés par moi-même
