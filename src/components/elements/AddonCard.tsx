@@ -1,6 +1,6 @@
-import { Card, CardContent } from "../ui/card";
-import { Checkbox } from "../ui/checkbox";
-import { Label } from "../ui/label";
+import { Card, CardContent } from '../ui/card';
+import { Checkbox } from '../ui/checkbox';
+import { Label } from '../ui/label';
 
 type Prices = {
   monthly: number;
@@ -29,7 +29,7 @@ export const AddonCard = ({
   return (
     <Card
       className={`cursor-pointer border-1 ${
-        checked ? "border-purple-600" : "hover:border-purple-600"
+        checked ? 'border-purple-600' : 'hover:border-purple-600'
       }`}
       onClick={() => onCheckedChange(!checked)}
     >

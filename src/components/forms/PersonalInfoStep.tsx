@@ -1,9 +1,9 @@
-import type { UseFormReturn } from "react-hook-form";
-import type { FormData } from "../../lib/schemas";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Title } from "../elements/Title";
-import { StepDescription } from "../elements/StepDescription";
+import type { UseFormReturn } from 'react-hook-form';
+import type { FormData } from '../../lib/schemas';
+import { Label } from '../ui/label';
+import { Input } from '../ui/input';
+import { Title } from '../elements/Title';
+import { StepDescription } from '../elements/StepDescription';
 
 export const PersonalInfoStep = ({
   form,
@@ -15,7 +15,7 @@ export const PersonalInfoStep = ({
     formState: { errors },
   } = form;
 
-  const personalInfoStyle = "flex flex-col gap-2";
+  const personalInfoStyle = 'flex flex-col gap-2';
 
   return (
     <div className="flex flex-col">
@@ -23,39 +23,52 @@ export const PersonalInfoStep = ({
       <StepDescription content="Please provide your name, email address, and phone number." />
       <div className="flex flex-col gap-4">
         <div className={personalInfoStyle}>
-          <Label htmlFor="name">Name</Label>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="name">Name</Label>
+            {errors.name && (
+              <span className="text-sm text-red-500">
+                {errors.name.message}
+              </span>
+            )}
+          </div>
           <Input
             type="text"
-            {...register("name")}
+            {...register('name')}
             placeholder="e.g. Stephen King"
+            aria-invalid={!!errors.name}
           />
-          {errors.name && (
-            <span style={{ color: "red", fontSize: "12px" }}>
-              {errors.name.message}
-            </span>
-          )}
         </div>
         <div className={personalInfoStyle}>
-          <Label htmlFor="email">Email Address</Label>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="email">Email Address</Label>
+            {errors.email && (
+              <span className="text-sm text-red-500">
+                {errors.email.message}
+              </span>
+            )}
+          </div>
           <Input
             type="email"
-            {...register("email")}
+            {...register('email')}
             placeholder="e.g. stephenking@lorem.com"
+            aria-invalid={!!errors.email}
           />
-          {errors.email && <span>{errors.email.message}</span>}
         </div>
         <div className={personalInfoStyle}>
-          <Label htmlFor="phone">Phone Number</Label>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="phone">Phone Number</Label>
+            {errors.phone && (
+              <span className="text-sm text-red-500">
+                {errors.phone.message}
+              </span>
+            )}
+          </div>
           <Input
             type="tel"
-            {...register("phone")}
+            {...register('phone')}
             placeholder="e.g. +1 234 567 890"
+            aria-invalid={!!errors.phone}
           />
-          {errors.phone && (
-            <span style={{ color: "red", fontSize: "12px" }}>
-              {errors.phone.message}
-            </span>
-          )}
         </div>
       </div>
     </div>

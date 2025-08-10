@@ -27,3 +27,5 @@ watch() c'est incr
 rechargement garde en mémoire: l'étape actuelle + les données sélectionnées
 
 à corriger: le bouton confirme est gris par défaut quand on recharge, il faut revenir à la page de sélection du plan et refaire next step pour qu'il soit actionnable
+
+à creuser: personnalisation des components shadcn

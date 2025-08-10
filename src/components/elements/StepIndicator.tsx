@@ -8,11 +8,11 @@ export const StepIndicator = ({
   stepName: string;
 }) => {
   return (
-    <div className="flex gap-4 items-center">
+    <div className="flex items-center gap-4">
       <p
         className={`${
-          isCurrentStep && "bg-blue-200 text-blue-950 border-none"
-        } font-bold rounded-full border-white border-1 w-8 h-8 flex items-center justify-center`}
+          isCurrentStep && 'border-none bg-blue-200 text-blue-950'
+        } flex h-8 w-8 items-center justify-center rounded-full border-1 border-white font-bold`}
       >
         {step}
       </p>

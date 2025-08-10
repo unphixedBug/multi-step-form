@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import { useFormStep } from "./hooks/useFormStep";
-import { PersonalInfoStep } from "./components/forms/PersonalInfoStep";
-import { PlanSelectionStep } from "./components/forms/PlanSelectionStep";
-import { AddOnsStep } from "./components/forms/AddOnsStep";
-import { SummaryStep } from "./components/forms/SummaryStep";
-import { Button } from "./components/ui/button";
-import { StepIndicator } from "./components/elements/StepIndicator";
-import { FormLayout } from "./components/layouts/FormLayout";
-import { ThankYouStep } from "./components/forms/ThankYouStep";
+import { useState, useEffect } from 'react';
+import { useFormStep } from './hooks/useFormStep';
+import { PersonalInfoStep } from './components/forms/PersonalInfoStep';
+import { PlanSelectionStep } from './components/forms/PlanSelectionStep';
+import { AddOnsStep } from './components/forms/AddOnsStep';
+import { SummaryStep } from './components/forms/SummaryStep';
+import { Button } from './components/ui/button';
+import { StepIndicator } from './components/elements/StepIndicator';
+import { FormLayout } from './components/layouts/FormLayout';
+import { ThankYouStep } from './components/forms/ThankYouStep';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(() => {
-    const saved = localStorage.getItem("currentStep");
+    const saved = localStorage.getItem('currentStep');
     return saved ? parseInt(saved) : 1;
   });
   const totalSteps = 4;
@@ -26,7 +26,7 @@ function App() {
   const form = useFormStep();
 
   useEffect(() => {
-    localStorage.setItem("currentStep", currentStep.toString());
+    localStorage.setItem('currentStep', currentStep.toString());
   }, [currentStep]);
 
   const nextStep = () => {
@@ -42,9 +42,9 @@ function App() {
   };
 
   return (
-    <div className="bg-blue-50 h-screen w-screen flex flex-col items-center justify-center text-base text-blue-950">
-      <div className="md:bg-white md:h-9/12 md:w-9/12 h-full w-full rounded-2xl p-3 flex flex-col md:flex-row items-center justify-between">
-        <div className="flex md:flex-col gap-7 items-start rounded-lg p-10 text-white bg-[url('/images/bg-sidebar-mobile.svg')] md:bg-[url('/images/bg-sidebar-desktop.svg')] bg-cover bg-center bg-no-repeat md:w-1/3 h-1/3 md:h-full">
+    <div className="flex h-screen w-screen flex-col items-center justify-center bg-blue-50 text-base text-blue-950">
+      <div className="relative flex h-full w-full flex-col items-center justify-between rounded-2xl p-3 md:h-9/12 md:w-9/12 md:flex-row md:gap-9 md:bg-white">
+        <div className="absolute inset-0 z-0 flex h-1/4 w-full items-start justify-center gap-7 bg-[url('/images/bg-sidebar-mobile.svg')] bg-cover bg-center bg-no-repeat p-10 text-white md:relative md:inset-auto md:h-full md:w-1/3 md:flex-col md:justify-start md:rounded-lg md:bg-[url('/images/bg-sidebar-desktop.svg')]">
           <StepIndicator
             step={1}
             isCurrentStep={currentStep === 1}
@@ -66,36 +66,40 @@ function App() {
             stepName="Summary"
           />
         </div>
-        {!isSubmitted && (
-          <FormLayout>
-            <div>
-              {currentStep === 1 && <PersonalInfoStep form={form} />}
-              {currentStep === 2 && <PlanSelectionStep form={form} />}
-              {currentStep === 3 && <AddOnsStep form={form} />}
-              {currentStep === 4 && !isSubmitted && <SummaryStep form={form} />}
-            </div>
-            {!isSubmitted && (
-              <div className="flex justify-end">
-                {currentStep > 1 && <Button onClick={prevStep}>Go back</Button>}
-                {currentStep < totalSteps && (
-                  <Button onClick={nextStep} className="ml-auto">
-                    Next Step
-                  </Button>
-                )}
-                {currentStep === totalSteps && !isSubmitted && (
-                  <Button
-                    onClick={handleConfirm}
-                    disabled={!form.formState.isValid}
-                    className="ml-auto"
-                  >
-                    Confirm
-                  </Button>
+        <div className="flex h-full w-full flex-col justify-between md:w-2/3 md:px-18">
+          {!isSubmitted && (
+            <FormLayout>
+              <div>
+                {currentStep === 1 && <PersonalInfoStep form={form} />}
+                {currentStep === 2 && <PlanSelectionStep form={form} />}
+                {currentStep === 3 && <AddOnsStep form={form} />}
+                {currentStep === 4 && !isSubmitted && (
+                  <SummaryStep form={form} />
                 )}
               </div>
-            )}
-          </FormLayout>
-        )}
-        {isSubmitted && <ThankYouStep />}
+            </FormLayout>
+          )}
+          {isSubmitted && <ThankYouStep />}
+          {!isSubmitted && (
+            <div className="flex h-1/10 w-full items-center justify-end bg-white px-2 md:bg-auto">
+              {currentStep > 1 && <Button onClick={prevStep}>Go back</Button>}
+              {currentStep < totalSteps && (
+                <Button onClick={nextStep} className="ml-auto">
+                  Next Step
+                </Button>
+              )}
+              {currentStep === totalSteps && !isSubmitted && (
+                <Button
+                  onClick={handleConfirm}
+                  disabled={!form.formState.isValid}
+                  className="ml-auto"
+                >
+                  Confirm
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

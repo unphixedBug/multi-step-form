@@ -1,9 +1,9 @@
-import type { UseFormReturn } from "react-hook-form";
-import type { FormData } from "../../lib/schemas";
-import { StepDescription } from "../elements/StepDescription";
-import { Title } from "../elements/Title";
-import { Card, CardContent } from "../ui/card";
-import { ADDONS_DATA, PLANS_DATA } from "../../lib/constants";
+import type { UseFormReturn } from 'react-hook-form';
+import type { FormData } from '../../lib/schemas';
+import { StepDescription } from '../elements/StepDescription';
+import { Title } from '../elements/Title';
+import { Card, CardContent } from '../ui/card';
+import { ADDONS_DATA, PLANS_DATA } from '../../lib/constants';
 
 export const SummaryStep = ({ form }: { form: UseFormReturn<FormData> }) => {
   const { watch } = form;
@@ -32,10 +32,10 @@ export const SummaryStep = ({ form }: { form: UseFormReturn<FormData> }) => {
       <Card>
         <CardContent>
           <div>
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <div>
                 <p>
-                  {plan} ({isYearlyPlanSelected ? "Yearly" : "Monthly"})
+                  {plan} ({isYearlyPlanSelected ? 'Yearly' : 'Monthly'})
                 </p>
                 <button>Change</button>
               </div>
@@ -58,11 +58,11 @@ export const SummaryStep = ({ form }: { form: UseFormReturn<FormData> }) => {
           </div>
         </CardContent>
       </Card>
-      <div className="flex justify-between items-center">
-        <p>Total (per {isYearlyPlanSelected ? "year" : "month"})</p>
+      <div className="flex items-center justify-between">
+        <p>Total (per {isYearlyPlanSelected ? 'year' : 'month'})</p>
         <div>
           ${totalPrice}
-          {isYearlyPlanSelected ? "/yr" : "/mo"}
+          {isYearlyPlanSelected ? '/yr' : '/mo'}
         </div>
       </div>
     </div>
