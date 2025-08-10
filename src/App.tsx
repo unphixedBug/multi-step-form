@@ -41,10 +41,14 @@ function App() {
     }
   };
 
+  const goToStep = (step: number) => {
+    setCurrentStep(step);
+  };
+
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center bg-blue-50 text-base text-blue-950">
-      <div className="relative flex h-full w-full flex-col items-center justify-between rounded-2xl p-3 md:h-9/12 md:w-9/12 md:flex-row md:gap-9 md:bg-white">
-        <div className="absolute inset-0 z-0 flex h-1/4 w-full items-start justify-center gap-7 bg-[url('/images/bg-sidebar-mobile.svg')] bg-cover bg-center bg-no-repeat p-10 text-white md:relative md:inset-auto md:h-full md:w-1/3 md:flex-col md:justify-start md:rounded-lg md:bg-[url('/images/bg-sidebar-desktop.svg')]">
+      <div className="relative flex h-full w-full flex-col items-center justify-between rounded-2xl lg:h-9/12 lg:w-9/12 lg:flex-row lg:gap-9 lg:bg-white lg:p-3">
+        <div className="absolute inset-0 z-0 flex h-1/4 w-full items-start justify-center gap-7 bg-[url('/images/bg-sidebar-mobile.svg')] bg-cover bg-center bg-no-repeat p-10 text-white lg:relative lg:inset-auto lg:h-full lg:w-1/3 lg:flex-col lg:justify-start lg:rounded-lg lg:bg-[url('/images/bg-sidebar-desktop.svg')]">
           <StepIndicator
             step={1}
             isCurrentStep={currentStep === 1}
@@ -66,7 +70,7 @@ function App() {
             stepName="Summary"
           />
         </div>
-        <div className="flex h-full w-full flex-col justify-between md:w-2/3 md:px-18">
+        <div className="flex h-full w-full flex-col justify-between lg:w-2/3 lg:px-18">
           {!isSubmitted && (
             <FormLayout>
               <div>
@@ -74,15 +78,19 @@ function App() {
                 {currentStep === 2 && <PlanSelectionStep form={form} />}
                 {currentStep === 3 && <AddOnsStep form={form} />}
                 {currentStep === 4 && !isSubmitted && (
-                  <SummaryStep form={form} />
+                  <SummaryStep form={form} goToStep={goToStep} />
                 )}
               </div>
             </FormLayout>
           )}
           {isSubmitted && <ThankYouStep />}
           {!isSubmitted && (
-            <div className="flex h-1/10 w-full items-center justify-end bg-white px-2 md:bg-auto">
-              {currentStep > 1 && <Button onClick={prevStep}>Go back</Button>}
+            <div className="flex h-1/10 w-full items-center justify-end bg-white px-6 lg:bg-auto">
+              {currentStep > 1 && (
+                <Button onClick={prevStep} variant="ghost">
+                  Go back
+                </Button>
+              )}
               {currentStep < totalSteps && (
                 <Button onClick={nextStep} className="ml-auto">
                   Next Step

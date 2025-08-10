@@ -21,7 +21,7 @@ export const AddOnsStep = ({ form }: { form: UseFormReturn<FormData> }) => {
     <div>
       <Title title="Pick add-ons" />
       <StepDescription content="Add-ons help enhance your gaming experience." />
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-6">
         {Object.values(ADDONS_DATA).map((addon) => {
           return (
             <AddonCard

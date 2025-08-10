@@ -26,7 +26,7 @@ export const PersonalInfoStep = ({
           <div className="flex items-center justify-between">
             <Label htmlFor="name">Name</Label>
             {errors.name && (
-              <span className="text-sm text-red-500">
+              <span className="text-sm font-semibold text-red-500">
                 {errors.name.message}
               </span>
             )}
@@ -42,7 +42,7 @@ export const PersonalInfoStep = ({
           <div className="flex items-center justify-between">
             <Label htmlFor="email">Email Address</Label>
             {errors.email && (
-              <span className="text-sm text-red-500">
+              <span className="text-sm font-semibold text-red-500">
                 {errors.email.message}
               </span>
             )}
@@ -58,7 +58,7 @@ export const PersonalInfoStep = ({
           <div className="flex items-center justify-between">
             <Label htmlFor="phone">Phone Number</Label>
             {errors.phone && (
-              <span className="text-sm text-red-500">
+              <span className="text-sm font-semibold text-red-500">
                 {errors.phone.message}
               </span>
             )}

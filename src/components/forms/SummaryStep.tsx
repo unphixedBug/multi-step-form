@@ -5,7 +5,13 @@ import { Title } from '../elements/Title';
 import { Card, CardContent } from '../ui/card';
 import { ADDONS_DATA, PLANS_DATA } from '../../lib/constants';
 
-export const SummaryStep = ({ form }: { form: UseFormReturn<FormData> }) => {
+export const SummaryStep = ({
+  form,
+  goToStep,
+}: {
+  form: UseFormReturn<FormData>;
+  goToStep: (step: number) => void;
+}) => {
   const { watch } = form;
   const { plan, isYearlyPlanSelected, addons } = watch();
 
@@ -31,21 +37,30 @@ export const SummaryStep = ({ form }: { form: UseFormReturn<FormData> }) => {
       <StepDescription content="Double-check everything looks OK before confirming." />
       <Card>
         <CardContent>
-          <div>
+          <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
               <div>
-                <p>
-                  {plan} ({isYearlyPlanSelected ? 'Yearly' : 'Monthly'})
+                <p className="font-semibold">
+                  {plan.charAt(0).toUpperCase() + plan.slice(1)} (
+                  {isYearlyPlanSelected ? 'Yearly' : 'Monthly'})
                 </p>
-                <button>Change</button>
+                <button
+                  className="cursor-pointer text-gray-500 underline"
+                  onClick={() => goToStep(2)}
+                >
+                  Change
+                </button>
               </div>
-              <p>${planPrice}</p>
+              <p className="font-semibold">
+                ${planPrice}
+                {isYearlyPlanSelected ? '/yr' : '/mo'}
+              </p>
             </div>
             <hr />
             {selectedAddons.map((addon) => {
               return (
                 <div className="flex justify-between">
-                  <p>{addon.name}</p>
+                  <p className="text-gray-500">{addon.name}</p>
                   <p>
                     +$
                     {isYearlyPlanSelected
@@ -58,10 +73,12 @@ export const SummaryStep = ({ form }: { form: UseFormReturn<FormData> }) => {
           </div>
         </CardContent>
       </Card>
-      <div className="flex items-center justify-between">
-        <p>Total (per {isYearlyPlanSelected ? 'year' : 'month'})</p>
-        <div>
-          ${totalPrice}
+      <div className="mt-6 flex items-center justify-between px-6">
+        <p className="text-gray-500">
+          Total (per {isYearlyPlanSelected ? 'year' : 'month'})
+        </p>
+        <div className="font-semibold text-purple-600">
+          +${totalPrice}
           {isYearlyPlanSelected ? '/yr' : '/mo'}
         </div>
       </div>

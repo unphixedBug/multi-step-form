@@ -29,7 +29,9 @@ export const AddonCard = ({
   return (
     <Card
       className={`cursor-pointer border-1 ${
-        checked ? 'border-purple-600' : 'hover:border-purple-600'
+        checked
+          ? 'border-purple-600 bg-purple-50'
+          : 'bg-white hover:border-purple-600'
       }`}
       onClick={() => onCheckedChange(!checked)}
     >
@@ -41,7 +43,9 @@ export const AddonCard = ({
             onCheckedChange={(checked) => onCheckedChange(checked as boolean)}
           />
           <div>
-            <Label htmlFor={id}>{title}</Label>
+            <Label className="font-semibold" htmlFor={id}>
+              {title}
+            </Label>
             <p className="text-gray-500">{description}</p>
           </div>
         </div>

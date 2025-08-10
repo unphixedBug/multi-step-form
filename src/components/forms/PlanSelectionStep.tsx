@@ -19,13 +19,13 @@ export const PlanSelectionStep = ({
     <div>
       <Title title="Select your plan" />
       <StepDescription content="You have the option of monthly or yearly billing." />
-      <div className="flex w-full flex-col justify-between gap-4 md:flex-row">
+      <div className="flex w-full flex-col justify-between gap-4 lg:flex-row">
         {Object.values(PLANS_DATA).map((plan) => (
           <label
             key={plan.id}
             className={`${
               plan.id === selectedPlan
-                ? 'border-purple-600 bg-white'
+                ? 'border-purple-600 bg-purple-50'
                 : 'border-gray-200'
             } flex flex-1 cursor-pointer flex-col gap-4 rounded-lg border-1 p-4`}
           >
@@ -35,8 +35,8 @@ export const PlanSelectionStep = ({
               value={plan.id}
               className="sr-only"
             />
-            <div className="flex items-center gap-4 md:flex-col md:items-start">
-              <img className="mb-6 h-10 w-10" src={plan.icon} alt={plan.name} />
+            <div className="flex items-center gap-4 lg:flex-col lg:items-start">
+              <img className="h-10 w-10" src={plan.icon} alt={plan.name} />
               <div>
                 <h3 className="font-bold">{plan.name}</h3>
                 <p className="text-gray-500">
@@ -55,7 +55,7 @@ export const PlanSelectionStep = ({
           </label>
         ))}
       </div>
-      <label className="mt-6 flex cursor-pointer gap-2 rounded-lg bg-blue-50 p-2">
+      <label className="mt-6 flex cursor-pointer place-content-center items-center gap-6 rounded-lg bg-purple-50 py-4">
         <input
           {...register('isYearlyPlanSelected')}
           type="checkbox"
@@ -76,7 +76,7 @@ export const PlanSelectionStep = ({
         />
         <span
           className={`font-bold ${
-            isYearlyPlanSelected ? 'text-blue-950' : 'text-gray-500'
+            isYearlyPlanSelected ? 'text-blue-950' : 'text-gray-400'
           }`}
         >
           Yearly
